@@ -11,7 +11,7 @@ def about(request):
     return render(request, 'about.html')
 
 def puppies_index(request):
-    return render(request, 'puppies/index.html',{'cats': cats})
+    return render(request, 'puppies/index.html',{'puppies': puppies})
 
 class Puppies:
     def __init__(self, name, breed, description, age):
@@ -20,8 +20,8 @@ class Puppies:
         self.description = description
         self.age = age
 
-cats = [
-    Puppies('Balto', 'Huskie', 'foul little demon', 3),
-    Puppies('Hoops', 'Golden Retriever', 'diluted tortoise shell', 1),
-    Puppies('Alpha', 'American Bulldog', '3 legged cat', 4)
+puppies = [
+    Puppies('Balto', 'Huskie', 'Brave partner', 3),
+    Puppies('Hoops', 'Golden Retriever', 'Blond fur', 1),
+    Puppies('Alpha', 'American Bulldog', '3 legged dog', 4)
 ]
