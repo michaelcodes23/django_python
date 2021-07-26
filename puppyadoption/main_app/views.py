@@ -1,7 +1,8 @@
 from django.shortcuts import render
-
-# Create your views here.
 from django.http import HttpResponse
+from django.views.generic.edit import CreateView
+from .models import Puppies_List
+# Create your views here.
 
 #Define the home view
 def home(request):
@@ -10,18 +11,31 @@ def home(request):
 def about(request):
     return render(request, 'about.html')
 
+# {'puppies': puppies} is a way to reference the model
 def puppies_index(request):
-    return render(request, 'puppies/index.html',{'cats': cats})
+    return render(request, 'puppies/index.html',{'puppies': puppies})
 
-class Puppies:
+def puppies_create(request):
+    return render(request, 'puppies/create.html')
+
+class PuppyCreate(CreateView):
+    model = Puppies_List
+    fields = '__all__'
+    #Alternate way of specfying what attributes we want to consider in the create view
+    fields = ['name', 'breed','description','price','age','date']
+
+
+#Model for local database
+class Puppies():
     def __init__(self, name, breed, description, age):
         self.name = name
         self.breed = breed
         self.description = description
         self.age = age
 
-cats = [
-    Puppies('Balto', 'Huskie', 'foul little demon', 3),
-    Puppies('Hoops', 'Golden Retriever', 'diluted tortoise shell', 1),
-    Puppies('Alpha', 'American Bulldog', '3 legged cat', 4)
+puppies = [
+    Puppies('Balto', 'Huskie', 'Brave partner', 3),
+    Puppies('Hoops', 'Golden Retriever', 'Blond fur', 1),
+    Puppies('Alpha', 'American Bulldog', '3 legged dog', 4)
 ]
+
