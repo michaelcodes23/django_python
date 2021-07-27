@@ -1,0 +1,13 @@
+{% extends 'base.html'%}
+{% block content %}
+<!-- Leaving action empty makes the form post to the same url used to display -->
+<form action = "" method = "post">
+    <!-- Django requires teh following for security purposes -->
+    {% csrf_token %}
+    <table>
+        <!-- Render the inputs inside of <tr>s &</tr>s -->
+        {{form.as_p}}
+    </table>
+    <input type = "submit" value="Submit!" class = "btn">
+</form>
+{% endblock %}

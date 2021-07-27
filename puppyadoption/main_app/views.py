@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Puppies_List
+
+
 # Create your views here.
 
 #Define the home view
@@ -20,10 +22,18 @@ def puppies_create(request):
 
 class PuppyCreate(CreateView):
     model = Puppies_List
-    fields = '__all__'
+    # fields = '__all__'
     #Alternate way of specfying what attributes we want to consider in the create view
-    fields = ['name', 'breed','description','price','age','date']
+    fields = ['name', 'breed','description','price','age']
+    success_url = '/puppies/'
 
+class PuppyUpdate(UpdateView):
+    model = Puppies_List
+    fields = ['name', 'breed', 'description','age']
+
+class PuppyDelete(DeleteView):
+    model = Puppies_List
+    success_url = '/puppies/'
 
 #Model for local database
 class Puppies():
